@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>users</title>
+    <link rel="shortcut icon" href="stylesheet/img/devil-icon.png">
+    <link rel="stylesheet" type="text/css" href="/mos-css/mos-style.css">
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+</head>
+
+<body>
+    {{!-- header --}}
+    <div id="header">
+        <div class="inHeader">
+            <div class="mosAdmin">
+                Hallo, Administrator<br>
+                <a href="/">E-Shopping</a> | <a href="">Help</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    {{!-- /header/ --}}
+
+    <div id="wrapper">
+        {{!-- menu --}}
+        <div id="leftBar">
+            <ul>
+                <li><a href="/admin/">Home</a></li>
+                <li><a href="/admin/areas">Area</a></li>
+                <li><a href="/admin/rooms">Apartment</a></li>
+                <li><a href="/admin/users">User</a></li>
+            </ul>
+        </div>
+        {{!-- /menu/ --}}
+        <div id="rightContent">
+            <h3>User Management</h3>
+
+            <table class="data sortable">
+
+                <tr class="data">
+                    <th class="data" width="30px">
+                        <center>ID</center>
+                        </center>
+                    </th>
+                    <th class="data">
+                        <center>Name</center>
+                    </th>
+                    <th class="data">
+                        <center>Address</center>
+                    </th>
+                    <th class="data">
+                        <center>Email</center>
+                    </th>
+                    <th class="data">
+                        <center>SĐT</center>
+                    </th>
+                    <th class="data">
+                        <center>Permission</center>
+                    </th>
+                    <th class="data" width="30px">
+                        <center>Option</center>
+                    </th>
+                </tr>
+                {{#each users as |item|}}
+                <tr class="data item">
+                    <td class="data" width="30px" name="idKHACHHANG">
+                        <center>{{item.idKHACHHANG}}</center>
+                    </td>
+                    <td class="data" name="TenKH">
+                        <center>{{item.TenKH}}</center>
+                    </td>
+                    <td class="data" name="DiaChi">
+                        <center>{{item.DiaChi}}</center>
+                    </td>
+                    <td class="data" name="Email">
+                        <center>{{item.Email}}</center>
+                    </td>
+                    <td class="data" name="SDT">
+                        <center>{{item.SDT}}</center>
+                    </td>
+                    <td class="data" name="Role">
+                        <center>{{item.Role}}</center>
+                    </td>
+                    <td class="data" width="30px">
+                        <center>
+                            <a href="/admin/users/edit/{{item.idKHACHHANG}}">Edit</a>
+                        </center>
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+
+        <div class="clear"></div>
+        {{!-- footer --}}
+        <div id="footer">
+            © Copyright © 2019 E-SHOPPing Inc. All rights reserved. |
+            Design by <a href="#" rel="nofollow" target="_blank">Nguyen Dung</a><br>
+        </div>
+        {{!-- /footer/ --}}
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+</body>
+
+</html>

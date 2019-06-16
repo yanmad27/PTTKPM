@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Admin</title>
+    <link rel="shortcut icon" href="stylesheet/img/devil-icon.png">
+    <link rel="stylesheet" type="text/css" href="/mos-css/mos-style.css">
+</head>
+
+<body>
+    {{!-- header --}}
+    <div id="header">
+        <div class="inHeader">
+            <div class="mosAdmin">
+                Hallo, Administrator<br>
+                <a href="/">E-Shopping</a> | <a href="">Help</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    {{!-- /header/ --}}
+
+    <div id="wrapper">
+        {{!-- menu --}}
+        <div id="leftBar">
+            <ul>
+                <li><a href="/admin/">Home</a></li>
+                <li><a href="/admin/areas">Area</a></li>
+                <li><a href="/admin/rooms">Apartment</a></li>
+                <li><a href="/admin/users">User</a></li>
+            </ul>
+        </div>
+        {{!-- /menu/ --}}
+
+        <div id="rightContent">
+            <h3>Cập nhật user</h3>
+            {{#if this.error}}
+            <div class="alert alert-danger" role="alert">
+                Invalid areaId. <a href="/admin/users" class="alert-link">Go back</a>.
+            </div>
+            {{else}}
+            <form action="/admin/users/update" method="post">
+                <table>
+                    <tr>
+                        <td style="float: right"><b>ID:</b></td>
+                        <td><input size="29" readonly name="idKHACHHANG" value="{{user.idKHACHHANG}}"></td>
+                    </tr>
+                    <tr>
+                        <td style="float: right"><b>Họ tên:</b></td>
+                        <td><input size="80"  type="text" value="{{user.TenKH}}" class="sedang" name="TenKH"></td>
+                    </tr>
+                    <tr>
+                        <td style="float: right"><b>Địa chỉ:</b></td>
+                        <td><input size="80" type="text" value="{{user.DiaChi}}" class="sedang" name="DiaChi"></td>
+                    </tr>
+                    <tr>
+                        <td style="float: right"><b>Email:</b></td>
+                        <td><input size="80" type="text" value="{{user.Email}}" class="sedang" name="Email"></td>
+                    </tr>
+                    <tr>
+                        <td style="float: right"><b>SĐT:</b></td>
+                        <td><input size="80" type="text" value="{{user.SDT}}" class="sedang" name="SDT"></td>
+                    </tr>
+                    <tr>
+                        <td style="float: right"><b>Quyền:</b></td>
+                        <td>
+                            {{#ifEq user}}
+                            {{this}}
+                            {{/ifEq}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button class="button"><a href="/admin/users">Back</a></button>
+                            <button class="button" type="submit" formaction="/admin/users/delete"><a>Delete</a></button>
+                            <button class="button" type="submit"><a>Save</a></button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            {{/if}}
+        </div>
+        <div class="clear"></div>
+
+        {{!-- footer --}}
+        <div id="footer">
+            © Copyright © 2019 E-SHOPPing Inc. All rights reserved. |
+            Design by <a href="#" rel="nofollow" target="_blank">Nguyen Dung</a><br>
+        </div>
+        {{!-- /footer/ --}}
+
+    </div>
+
+</body>
+
+</html>
