@@ -53,7 +53,7 @@ app.use((error, req, res, next) => {
     })
 });
 
-
-app.listen(8000, () => {
-    console.log('server running!');
+var port = process.env.PORT || 8000;
+app.listen(port, () => {
+    console.log('Server is running at http://localhost:' +port+'/');
 })

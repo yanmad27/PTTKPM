@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Areas</title>
+    <link rel="shortcut icon" href="stylesheet/img/devil-icon.png">
+    <link rel="stylesheet" type="text/css" href="/mos-css/mos-style.css">
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+</head>
+
+<body>
+    {{!-- header --}}
+    <div id="header">
+        <div class="inHeader">
+            <div class="mosAdmin">
+                Hallo, Administrator<br>
+                <a href="/">E-Shopping</a> | <a href="">Help</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    {{!-- /header/ --}}
+
+    <div id="wrapper">
+        {{!-- menu --}}
+        <div id="leftBar">
+            <ul>
+                <li><a href="/admin/">Home</a></li>
+                <li><a href="/admin/areas">Area</a></li>
+                <li><a href="/admin/rooms">Apartment</a></li>
+                <li><a href="/admin/users">User</a></li>
+            </ul>
+        </div>
+        {{!-- /menu/ --}}
+        <div id="rightContent">
+            <h3>Area Management</h3>
+            <a href="/admin/areas/add">Add Area</a>
+
+            <table class="data sortable">
+
+                <tr class="data">
+                    <th class="data" width="30px">
+                        <center>ID</center>
+                        </center>
+                    </th>
+                    <th class="data">
+                        <center>Area</center>
+                    </th>
+                    <th class="data" width="90px">
+                        <center>Option</center>
+                    </th>
+                </tr>
+                {{#each areas as |item|}}
+                <tr class="data item">
+                    <td class="data" width="30px" name="idKhuVuc">
+                        <center>{{item.idKhuVuc}}</center>
+                    </td>
+                    <td class="data" name="TenKhuVuc">
+                        <center>{{item.TenKhuVuc}}</center>
+                    </td>
+                    <td class="data" width="120px">
+                        <center>
+                            <a href="/admin/areas/edit/{{item.idKhuVuc}}">Edit</a>
+                        </center>
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+
+        <div class="clear"></div>
+        {{!-- footer --}}
+        <div id="footer">
+            © Copyright © 2019 E-SHOPPing Inc. All rights reserved. |
+            Design by <a href="#" rel="nofollow" target="_blank">Nguyen Dung</a><br>
+        </div>
+        {{!-- /footer/ --}}
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+</body>
+
+</html>

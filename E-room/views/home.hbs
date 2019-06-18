@@ -1,0 +1,66 @@
+{{!-- content --}}
+
+<div class="features_items">
+    <!--features_items-->
+    <div style="clear: both; margin-top: 10px;"></div>
+    <h2 class="title text-center">Sản Phẩm Nổi Bật</h2>
+    {{#each lcRooms}}
+    <div class="col-sm-4">
+        <div class="product-image-wrapper">
+            <div class="single-products">
+                <div class="productinfo text-center">
+                    <img class="fiximg" src="{{HinhAnh}}" alt="" />
+                    <h2>{{format GiaBan}}</h2>
+                    <p>{{TenPhong}}</p>
+                    <a href="/areas/{{idKhuVuc}}/rooms/{{idPhong}}/checkout" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thực hiện giao
+                        dịch</a>
+                </div>
+                <div class="product-overlay">
+                    <div class="overlay-content">
+                        <h2>{{format GiaBan}}</h2>
+                        <p>{{TenPhong}}</p>
+                        <a href="/areas/{{idKhuVuc}}/rooms/{{idPhong}}/checkout" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thực hiện
+                            giao dịch</a>
+                    </div>
+                </div>
+            </div>
+            <div class="choose">
+                <ul class="nav nav-pills nav-justified">
+                    <li><a href="/areas/{{idKhuVuc}}/rooms/{{idPhong}}"><i class="fa fa-plus-square"></i>Xem chi tiết</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    <div class="row">
+        <div class="col-sm-12">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            &laquo;
+                        </a>
+                    </li>
+                    {{#each lcPages}}
+                    {{#if active}}
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="javascript:;">{{value}}</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item"><a class="page-link" href="?page={{value}}">{{value}}</a></li>
+                    {{/if}}
+                    {{/each}}
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            &raquo;
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<!--features_items-->
+
+{{!-- end-content --}}

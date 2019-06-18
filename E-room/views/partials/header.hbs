@@ -1,0 +1,110 @@
+<header id="header">
+    <!--header-->
+    <div class="header_top">
+        <!--header_top-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="contactinfo">
+                        <ul class="nav nav-pills">
+                            <li><a href="#"><i class="fa fa-phone"></i> 0965577030</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i>
+                                    quocdung1612@gmail.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="social-icons pull-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/header_top-->
+
+    <div class="header-middle">
+        <!--header-middle-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="logo pull-left">
+                        <a href="/"><img src="/images/home/logo1.png" alt="" /></a>
+                    </div>
+                </div>
+
+                {{!-- tạo form để thực hiện lệnh signout lên server --}}
+                <form id="frmSignout" action="/account/logout" method="POST"></form>
+                <div class="col-sm-8">
+                    <div class="shop-menu pull-right">
+                        <form action="/areas/search" method="post">
+                            <div class="search_box">
+                                <input type="text" placeholder="Search" name="search" id="search" />
+                                <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/header-middle-->
+
+    <div class="header-bottom">
+        <!--header-bottom-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+                                class="icon-bar"></span> <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="mainmenu pull-left">
+                        <ul class="nav navbar-nav collapse navbar-collapse">
+                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                            {{#if isAuthenticated}}
+                            <li class="dropdown"><a href="#">Hi, <b>{{authUser.TenKH}}</b><i
+                                        class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a href="/account/profile/{{authUser.idKHACHHANG}}">
+                                            <i class="fa fa-user"></i>
+                                            Profile
+                                        </a></li>
+                                    <li><a href="/account/history/{{authUser.idKHACHHANG}}">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            History
+                                        </a></li>
+                                    {{#ifEq authUser.Quyen 1}}
+                                    <li><a href="/admin"><i class="fa fa-lock"></i>
+                                            Admin</a></li>
+                                    {{/ifEq}}
+                                    <li><a href="javascript: $('#frmSignout').submit();">
+                                            <i class="fa fa-sign-out"></i>
+                                            Sign Out
+                                        </a></li>
+                                </ul>
+                            </li>
+                            {{else}}
+                            <li><a href="/account/register"><i class="fa fa-user-plus"></i>
+                                    Register</a></li>
+                            <li><a href="/account/login"><i class="fa fa-sign-in"></i>
+                                    Sign In</a></li>
+                            {{/if}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/header-bottom-->
+</header>
+<!--/header-->

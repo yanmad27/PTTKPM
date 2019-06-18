@@ -1,0 +1,53 @@
+<div style="clear: both; margin-top: 10px;"></div>
+<h2 class="title text-center">Thông Tin Chi Tiết</h2>
+{{#if this.error}}
+<div class="alert alert-danger" role="alert">
+    Invalid Information. <a href="/" class="alert-link">Go back home</a>.
+</div>
+{{else}}
+<div class="product-details">
+    <!--product-details-->
+    <div class="col-sm-5">
+        <div class="view-product">
+            <img src="{{this.room.HinhAnh}}" alt="" />
+            <h3>ZOOM</h3>
+        </div>
+    </div>
+    <div class="col-sm-7">
+        <div class="product-information">
+            <!--/product-information-->
+            <img src="/images/product-details/new.jpg" class="newarrival" alt="" />
+            <h2>{{this.room.TenPhong}}</h2>
+            <p>
+                Mã phòng:
+                {{this.room.idPhong}}</p>
+            <img src="/images/product-details/rating.png" alt="" />
+            <span>
+                <span>{{format this.room.GiaBan}}</span>
+                <p>
+                    <a href="/areas/{{area.idKhuVuc}}/rooms/{{this.room.idPhong}}/checkout"><button type="button"
+                            class="btn btn-fefault cart">
+                            <i class="fa fa-shopping-cart"></i> Thực hiện giao dịch
+                        </button>
+                    </a>
+                </p>
+            </span>
+            <p>
+                <b>Khu vực:</b>
+                {{this.area.TenKhuVuc}}
+            </p>
+            <p>
+                <b>Địa chỉ:</b>
+                {{this.room.DiaChi}}
+            </p>
+            <p>
+                <b>Mô tả:</b>
+                {{this.room.MoTa}}
+            </p>
+            <a href=""><img src="/images/product-details/share.png" class="share img-responsive" alt="" /></a>
+        </div>
+        <!--/product-information-->
+    </div>
+</div>
+{{/if}}
+<!--/product-details-->

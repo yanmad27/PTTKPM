@@ -1,11 +1,10 @@
 var mysql = require('mysql');
 var createConnection = () => {
     return mysql.createConnection({
-        host: 'localhost',
-        port: 8889,
-        user: 'root',
-        password: 'root',
-        database: 'eroomdb'
+        host: '112.197.2.178',
+        port: 3306,
+        user: 'yan',
+        database: 'eroomdb',
     });
 }
 
@@ -13,8 +12,9 @@ module.exports = {
     load: (sql) => {//xử lý đồng bộ - promise
         return new Promise((resolve, reject) => {
             var connection = createConnection();
-            connection.connect();
-
+            connection.connect((error) => {
+                if (error) throw error;
+            });
             connection.query(sql, (error, results, fields) => {
                 if (error) throw reject(error);
                 else resolve(results);

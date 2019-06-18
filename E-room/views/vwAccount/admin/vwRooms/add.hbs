@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Admin</title>
+    <link rel="shortcut icon" href="stylesheet/img/devil-icon.png">
+    <link rel="stylesheet" type="text/css" href="/mos-css/mos-style.css">
+</head>
+
+<body>
+    {{!-- header --}}
+    <div id="header">
+        <div class="inHeader">
+            <div class="mosAdmin">
+                Hallo, Administrator<br>
+                <a href="/">E-Shopping</a> | <a href="">Help</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    {{!-- /header/ --}}
+
+    <div id="wrapper">
+        {{!-- menu --}}
+        <div id="leftBar">
+            <ul>
+                <li><a href="/admin/">Home</a></li>
+                <li><a href="/admin/areas">Area</a></li>
+                <li><a href="/admin/rooms">Apartment</a></li>
+                <li><a href="/admin/users">User</a></li>
+            </ul>
+        </div>
+        {{!-- /menu/ --}}
+
+        <div id="rightContent">
+            <h3>Thông tin căn hộ</h3>
+            <form action="" method="post">
+                <table>
+                    <tr>
+                        <td style="float: right"><b>Tên căn hộ:</b></td>
+                        <td><input size="80" type="text" class="sedang" id="txtKhuVuc" name="TenPhong"></td>
+                    </tr>
+                    <tr>
+                        <td style="float: right"><b>Địa chỉ:</b></td>
+                        <td><input size="80" type="text" class="sedang" name="DiaChi"></td>
+                    </tr>
+                    <tr>
+                        <td style="float: right"><b>Hình ảnh:</b></td>
+                        <td><input size="80" type="file" value="{{room.HinhAnh}}" class="sedang" name="HinhAnh"></td>
+                    </tr>
+                    <tr>
+                        <td style="float: right"><b>Chi tiết:</b></td>
+                        <td><input type="text" size="80" class="sedang" name="MoTa"></td>
+                    </tr>
+                    <tr>
+                        <td style="float: right"><b>Giá thành:</b></td>
+                        <td><input size="80" type="text" class="sedang" name="GiaBan"></td>
+                    </tr>
+                    <tr>
+                        <td style="float: right"><b>Khu vực:</b></td>
+                        <td>
+                            <select name="idKhuVuc" class="sedang" class="form-control">
+                                {{#each this.lcAreas}}
+                                <option value="{{idKhuVuc}}">{{TenKhuVuc}}</option>
+                                {{/each}}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button class="button"><a href="/admin/rooms">Back</a></button>
+                            <button class="button" type="submit"><a>Save</a></button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <div class="clear"></div>
+
+        {{!-- footer --}}
+        <div id="footer">
+            © Copyright © 2019 E-SHOPPing Inc. All rights reserved. |
+            Design by <a href="#" rel="nofollow" target="_blank">Nguyen Dung</a><br>
+        </div>
+        {{!-- /footer/ --}}
+
+    </div>
+
+</body>
+
+</html>

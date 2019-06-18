@@ -23,15 +23,15 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `khachhang`;
 CREATE TABLE `khachhang`  (
   `idKHACHHANG` int(11) NOT NULL AUTO_INCREMENT,
-  `TenKH` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `Email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `SDT` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `DiaChi` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `TenDangNhap` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `MatKhau` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TenKH` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `Email` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `SDT` varchar(10) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `DiaChi` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `TenDangNhap` varchar(100) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `MatKhau` varchar(100) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
   `Quyen` int(2) NOT NULL DEFAULT 0,
   PRIMARY KEY (`idKHACHHANG`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_vietnamese_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of khachhang
@@ -45,9 +45,9 @@ INSERT INTO `khachhang` VALUES (3, 'Khắc Doãn', 'yanmad@gmail.com', '01478523
 DROP TABLE IF EXISTS `khuvuc`;
 CREATE TABLE `khuvuc`  (
   `idKhuVuc` int(11) NOT NULL AUTO_INCREMENT,
-  `TenKhuVuc` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TenKhuVuc` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
   PRIMARY KEY (`idKhuVuc`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_vietnamese_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of khuvuc
@@ -62,47 +62,22 @@ INSERT INTO `khuvuc` VALUES (7, 'Quận Bình Thạnh\r\n');
 INSERT INTO `khuvuc` VALUES (8, 'Quận Tân Bình\r\n');
 
 -- ----------------------------
--- Table structure for nguoigiaodich
--- ----------------------------
-DROP TABLE IF EXISTS `nguoigiaodich`;
-CREATE TABLE `nguoigiaodich`  (
-  `idNGUOIGD` int(11) NOT NULL AUTO_INCREMENT,
-  `TenNguoiGD` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `DiaChi` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `SDT` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `GhiChu` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `Email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `idPhong` int(11) NOT NULL,
-  `idKHACHHANG` int(11) NOT NULL,
-  PRIMARY KEY (`idNGUOIGD`) USING BTREE,
-  INDEX `nguoigd_ibfk_1`(`idPhong`) USING BTREE,
-  INDEX `nguoigd_ibfk_2`(`idKHACHHANG`) USING BTREE,
-  CONSTRAINT `nguoigd_ibfk_1` FOREIGN KEY (`idPhong`) REFERENCES `phong` (`idPhong`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `nguoigd_ibfk_2` FOREIGN KEY (`idKHACHHANG`) REFERENCES `khachhang` (`idKHACHHANG`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of nguoigiaodich
--- ----------------------------
-INSERT INTO `nguoigiaodich` VALUES (5, 'Dũng', '336/1 Phạm Hữu Lầu', '965577030', 'Giao dịch ở ĐHKHTN', 'quocdung1612@gmail.com', 15, 3);
-
--- ----------------------------
 -- Table structure for phong
 -- ----------------------------
 DROP TABLE IF EXISTS `phong`;
 CREATE TABLE `phong`  (
   `idPhong` int(11) NOT NULL AUTO_INCREMENT,
-  `TenPhong` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `DiaChi` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `HinhAnh` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `MoTa` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `TenPhong` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `DiaChi` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `HinhAnh` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `MoTa` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
   `GiaBan` double NOT NULL,
   `idKhuVuc` int(11) NOT NULL,
   PRIMARY KEY (`idPhong`) USING BTREE,
   INDEX `phong_ibfk_1`(`idKhuVuc`) USING BTREE,
   FULLTEXT INDEX `TenPhong`(`TenPhong`, `DiaChi`),
   CONSTRAINT `phong_ibfk_1` FOREIGN KEY (`idKhuVuc`) REFERENCES `khuvuc` (`idKhuVuc`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_vietnamese_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of phong
@@ -122,5 +97,31 @@ INSERT INTO `phong` VALUES (12, 'ASYMMETRICAL ', '12 Nguyễn Văn Cừ', '/imag
 INSERT INTO `phong` VALUES (13, 'STRIPED SLUB KNIT', '13 Lê Lợi', '/images/home/K1.jpg', 'Round neck T-shirt with short sleeves and striped print.', 9000000, 5);
 INSERT INTO `phong` VALUES (14, 'RIBBED HALTER TOP', '14 Lý Thái Tổ', '/images/home/K2.jpg', 'Halter top with a ribbed finish.', 7000000, 6);
 INSERT INTO `phong` VALUES (15, 'STRIPED BERMUDA ', '15 Thành Thái', '/images/home/1560088819987.jpg', 'Bermuda shorts with an elastic drawstring waistband.', 8000000, 7);
+
+-- ----------------------------
+-- Table structure for nguoigiaodich
+-- ----------------------------
+DROP TABLE IF EXISTS `nguoigiaodich`;
+CREATE TABLE `nguoigiaodich`  (
+  `idNGUOIGD` int(11) NOT NULL AUTO_INCREMENT,
+  `TenNguoiGD` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `DiaChi` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `SDT` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `GhiChu` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NULL DEFAULT NULL,
+  `Email` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `idPhong` int(11) NOT NULL,
+  `idKHACHHANG` int(11) NOT NULL,
+  PRIMARY KEY (`idNGUOIGD`) USING BTREE,
+  INDEX `nguoigd_ibfk_1`(`idPhong`) USING BTREE,
+  INDEX `nguoigd_ibfk_2`(`idKHACHHANG`) USING BTREE,
+  CONSTRAINT `nguoigd_ibfk_1` FOREIGN KEY (`idPhong`) REFERENCES `phong` (`idPhong`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `nguoigd_ibfk_2` FOREIGN KEY (`idKHACHHANG`) REFERENCES `khachhang` (`idKHACHHANG`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_vietnamese_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of nguoigiaodich
+-- ----------------------------
+INSERT INTO `nguoigiaodich` VALUES (5, 'Dũng', '336/1 Phạm Hữu Lầu', '965577030', 'Giao dịch ở ĐHKHTN', 'quocdung1612@gmail.com', 15, 3);
+
 
 SET FOREIGN_KEY_CHECKS = 1;
