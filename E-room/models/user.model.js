@@ -13,6 +13,10 @@ module.exports = {
     return db.load(`select * from KHACHHANG where TenDangNhap = '${userName}'`);
   },
 
+  singleByEmail: email => {
+    return db.load(`select * from KHACHHANG where Email = '${email}'`);
+  },
+
   singleById: id => {
     return db.load(`select * from KHACHHANG where idKHACHHANG = '${id}'`);
   },
@@ -27,5 +31,9 @@ module.exports = {
 
   delete: id => {
     return db.delete('KHACHHANG', 'idKHACHHANG', id);
-  }
+  },
+
+  updateByUsername: (entity) => {
+    return db.update('khachhang', 'TenDangNhap', entity);
+  },
 };

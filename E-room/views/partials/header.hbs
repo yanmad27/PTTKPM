@@ -86,7 +86,14 @@
                                     {{#ifEq authUser.Quyen 1}}
                                     <li><a href="/admin"><i class="fa fa-lock"></i>
                                             Admin</a></li>
+                                    {{else}}
+                                    <li><a href="/account/post"><i class="fa fa-upload"></i>
+                                            Upload</a></li>
                                     {{/ifEq}}
+                                    <li><a href="/account/changepass">
+                                            <i class="fa fa-key"></i>
+                                            Change Password
+                                        </a></li>
                                     <li><a href="javascript: $('#frmSignout').submit();">
                                             <i class="fa fa-sign-out"></i>
                                             Sign Out

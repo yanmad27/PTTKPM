@@ -1,11 +1,10 @@
 var express = require('express');
 var userModel = require('../../models/user.model');
 
-var auth = require('../../middlewares/auth');
 
 var router = express.Router();
 
-router.get('/', auth, (req, res, next) => {
+router.get('/', (req, res, next) => {
     userModel.all()
         .then(rows => {
             for (let index = 0; index < rows.length; index++) {
@@ -23,7 +22,7 @@ router.get('/', auth, (req, res, next) => {
         }).catch(next);
 })
 
-router.get('/edit/:id', auth, (req, res, next) => {
+router.get('/edit/:id', (req, res, next) => {
     var id = req.params.id;
     if (isNaN(id)) {
         res.render('vwAccount/admin/vwUsers/edit', {
@@ -62,7 +61,7 @@ router.get('/edit/:id', auth, (req, res, next) => {
     }).catch(next);
 })
 
-router.post('/update', auth, (req, res, next) => {
+router.post('/update', (req, res, next) => {
     var entity = {
         idKHAHHANG: req.body.idKHAHHANG,
         TenKH: req.body.TenKH,
@@ -77,7 +76,7 @@ router.post('/update', auth, (req, res, next) => {
     }).catch(next);
 })
 
-router.post('/delete', auth, (req, res, next) => {
+router.post('/delete', (req, res, next) => {
     userModel.delete(req.body.idKHACHHANG).then(n => {
         res.redirect('/admin/users');
     }).catch(next);

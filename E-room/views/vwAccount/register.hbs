@@ -21,7 +21,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
 
-
 </head>
 
 <body>
@@ -142,12 +141,6 @@
         </div>
     </section>
     <!--/form-->
-
-    <div class="container text-center">
-        <div class="content-404">
-            <h2><a href="/">Bring me back Home</a></h2>
-        </div>
-    </div>
 
     <footer id="footer">
         <!--Footer-->
@@ -345,7 +338,10 @@
                     },
                     email: {
                         required: true,
-                        email: true
+                        email: true,
+                        remote: {
+                            url: '/account/is-available-email'
+                        }
                     },
                 },
                 messages: {
@@ -372,7 +368,8 @@
                     },
                     email: {
                         required: 'Please enter a valid email address.',
-                        email: 'Please enter a valid email address.'
+                        email: 'Please enter a valid email address.',
+                        remote: 'Your email has been taken, please take another.'
                     },
                 },
                 errorElement: 'small',

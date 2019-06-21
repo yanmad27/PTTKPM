@@ -1,12 +1,11 @@
 var express = require('express');
 var roomModel = require('../../models/room.model');
 
-var auth = require('../../middlewares/auth');
 var upload = require('../../middlewares/upload');
 
 var router = express.Router();
 
-router.get('/', auth, (req, res, next) => {
+router.get('/',  (req, res, next) => {
     roomModel.all()
         .then(rows => {
             res.render('vwAccount/admin/vwRooms/index', {
@@ -16,11 +15,11 @@ router.get('/', auth, (req, res, next) => {
         }).catch(next);
 })
 
-router.get('/add', auth, (req, res) => {
+router.get('/add',  (req, res) => {
     res.render('vwAccount/admin/vwRooms/add', { layout: false });
 })
 
-router.post('/add', auth, (req, res, next) => {
+router.post('/add',  (req, res, next) => {
     upload.single('HinhAnh')(req, res, err => {
         if (err) {
             return res.json({
@@ -44,7 +43,7 @@ router.post('/add', auth, (req, res, next) => {
     })
 })
 
-router.get('/edit/:id', auth, (req, res, next) => {
+router.get('/edit/:id',  (req, res, next) => {
     var id = req.params.id;
     if (isNaN(id)) {
         res.render('vwAccount/admin/vwRooms/edit', {
@@ -81,7 +80,7 @@ router.get('/edit/:id', auth, (req, res, next) => {
     }).catch(next);
 })
 
-router.post('/update', auth, (req, res, next) => {
+router.post('/update',  (req, res, next) => {
     upload.single('HinhAnh')(req, res, err => {
         if (err) {
             return res.json({
@@ -105,7 +104,7 @@ router.post('/update', auth, (req, res, next) => {
     })
 })
 
-router.post('/delete', auth, (req, res, next) => {
+router.post('/delete',  (req, res, next) => {
     roomModel.delete(req.body.idPhong).then(n => {
         res.redirect('/admin/rooms');
     }).catch(next);

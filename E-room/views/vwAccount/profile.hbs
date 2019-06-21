@@ -113,6 +113,10 @@
                                         <li><a href="/admin"><i class="fa fa-lock"></i>
                                                 Admin</a></li>
                                         {{/ifEq}}
+                                        <li><a href="/account/changepass">
+                                                <i class="fa fa-key"></i>
+                                                Change Password
+                                            </a></li>
                                         <li><a href="javascript: $('#frmSignout').submit();">
                                                 <i class="fa fa-sign-out"></i>
                                                 Sign Out
@@ -120,10 +124,6 @@
                                     </ul>
                                 </li>
 
-                                {{#if authUser.Rule}}
-                                <li><a href="indexadmin.jsp"><i class="fa fa-lock"></i>
-                                        Admin</a></li>
-                                {{/if}}
                                 {{else}}
                                 <li><a href="/account/register"><i class="fa fa-user-plus"></i>
                                         Register</a></li>

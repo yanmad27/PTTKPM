@@ -1,5 +1,6 @@
 var express = require('express');
 var morgan = require('morgan');
+var auth = require('./middlewares/auth');
 
 var app = express();
 
@@ -36,10 +37,10 @@ app.get('/partials/', (req, res) => {
 
 app.use('/areas', require('./routes/area.route'));
 app.use('/account', require('./routes/account/account.route'));
-app.use('/admin', require('./routes/admin/admin.route'));
-app.use('/admin/areas', require('./routes/admin/area.route'));
-app.use('/admin/rooms', require('./routes/admin/room.route'));
-app.use('/admin/users', require('./routes/admin/user.route'));
+app.use('/admin', auth.isAdmin, require('./routes/admin/admin.route'));
+app.use('/admin/areas', auth.isAdmin, require('./routes/admin/area.route'));
+app.use('/admin/rooms', auth.isAdmin, require('./routes/admin/room.route'));
+app.use('/admin/users', auth.isAdmin, require('./routes/admin/user.route'));
 
 app.use((req, res, next) => {
     res.render('404', { layout: false });

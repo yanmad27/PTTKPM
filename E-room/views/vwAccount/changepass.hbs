@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Login</title>
+    <title>Register</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/css/prettyPhoto.css" rel="stylesheet">
@@ -14,12 +14,15 @@
     <link href="/css/animate.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/responsive.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 
     <link rel="shortcut icon" href="ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
 </head>
 
 <body>
@@ -96,10 +99,39 @@
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                {{#if isAuthenticated}}
+                                <li class="dropdown"><a href="#">Hi, <b>{{authUser.TenDangNhap}}</b><i
+                                            class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="/account/profile/{{authUser.idKHACHHANG}}">
+                                                <i class="fa fa-user"></i>
+                                                Profile
+                                            </a></li>
+                                        <li><a href="/account/history/{{authUser.idKHACHHANG}}">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                History
+                                            </a></li>
+                                        {{#ifEq authUser.Quyen 1}}
+                                        <li><a href="/admin"><i class="fa fa-lock"></i>
+                                                Admin</a></li>
+                                        {{/ifEq}}
+                                        <li><a href="/account/changepass">
+                                                <i class="fa fa-key"></i>
+                                                Change Password
+                                            </a></li>
+                                        <li><a href="javascript: $('#frmSignout').submit();">
+                                                <i class="fa fa-sign-out"></i>
+                                                Sign Out
+                                            </a></li>
+                                    </ul>
+                                </li>
+
+                                {{else}}
                                 <li><a href="/account/register"><i class="fa fa-user-plus"></i>
                                         Register</a></li>
                                 <li><a href="/account/login"><i class="fa fa-sign-in"></i>
                                         Sign In</a></li>
+                                {{/if}}
                             </ul>
                         </div>
                     </div>
@@ -119,22 +151,36 @@
                 <div class="col-sm-4">
                     <div class="signup-form">
                         <!--sign up form-->
-                        <h2>Signin!</h2>
+                        <h2>Information Customer!</h2>
                         {{#if err_message}}
                         <div class="alert alert-warning alert-dismissible show" role="alert">
                             {{err_message}}
                         </div>
                         {{/if}}
-                        <form method="POST" id="loginForm">
-                            <input type="text" placeholder="Username" id="txtUsername" name="username" autofocus />
-                            <input type="password" placeholder="Password" id="txtPassword" name="password" />
-                            <span>
-                                <a href="/account/forgotpass">Forgot Password?</a>
-                            </span>
-                            <button type="submit" class="btn btn-default">Signin</button>
+                        <form novalidate action="/account/updatepass" method="POST" id="changePassForm">
+                            <div class="form-group">
+                                <i class="fa fa-key" aria-hidden="true"></i>
+                                <input type="password" placeholder="Old Password" id="txtOldPassword"
+                                    name="oldpassword">
+                            </div>
+                            <div class="form-group">
+                                <i class="fa fa-key" aria-hidden="true"></i>
+                                <input type="password" placeholder="New Password" id="txtNewPassword"
+                                    name="newpassword">
+                            </div>
+                            <div class="form-group">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                                <input type="password" placeholder="Confirm" id="txtConfirm" name="confirm">
+                            </div>
+                            <div class="bottom">
+                                <input type="submit" value="Change" />
+                            </div>
                         </form>
+                        {{/if}}
                     </div>
                     <!--/sign up form-->
+                </div>
+                <div class="col-sm-4">
                 </div>
             </div>
         </div>
@@ -307,6 +353,48 @@
     <script src="/js/price-range.js"></script>
     <script src="/js/jquery.prettyPhoto.js"></script>
     <script src="/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script
+        type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script>
+        $(function () {
+
+            $('#changePassForm').validate({
+                rules: {
+                    newpassword: {
+                        required: true,
+                        minlength: 6
+                    },
+                    confirm: {
+                        required: true,
+                        equalTo: $('[name="newpassword"]')
+                    },
+                },
+                messages: {
+                    newpassword: {
+                        required: 'Please enter a valid new password.',
+                        minlength: 'Your password must have at least 6 characters.'
+                    },
+                    confirm: {
+                        required: 'Please try again! Your password does not match.',
+                        equalTo: 'Your password does not match. Please try again!'
+                    },
+                },
+                errorElement: 'small',
+                errorClass: 'help-block text-danger',
+                highlight: function (e) {
+                    $(e).removeClass('is-valid').addClass('is-invalid');
+                },
+                unhighlight: function (e) {
+                    $(e).removeClass('is-invalid').addClass('is-valid');
+                }
+            });
+        })
+    </script>
 </body>
 
 </html>

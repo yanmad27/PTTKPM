@@ -113,6 +113,10 @@
                                         <li><a href="/admin"><i class="fa fa-lock"></i>
                                                 Admin</a></li>
                                         {{/ifEq}}
+                                        <li><a href="/account/changepass">
+                                                <i class="fa fa-key"></i>
+                                                Change Password
+                                            </a></li>
                                         <li><a href="javascript: $('#frmSignout').submit();">
                                                 <i class="fa fa-sign-out"></i>
                                                 Sign Out
@@ -171,7 +175,8 @@
                                 <p>{{item.idPhong}}</p>
                             </td>
                             <td class="cart_product">
-                                <a href="/areas/{{item.idKhuVuc}}/rooms/{{item.idPhong}}"><img src="{{item.HinhAnh}}" alt=""></a>
+                                <a href="/areas/{{item.idKhuVuc}}/rooms/{{item.idPhong}}"><img src="{{item.HinhAnh}}"
+                                        alt=""></a>
                             </td>
                             <td class="cart_description">
                                 <h4><a href="/areas/{{item.idKhuVuc}}/rooms/{{item.idPhong}}">{{item.TenPhong}}</a></h4>

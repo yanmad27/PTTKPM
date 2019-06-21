@@ -72,7 +72,7 @@ router.get('/:idArea/rooms/:idRoom', (req, res, next) => {
     }).catch(next);
 });
 
-router.get('/:idArea/rooms/:idRoom/checkout', auth, (req, res, next) => {
+router.get('/:idArea/rooms/:idRoom/checkout', auth.notLogin, (req, res, next) => {
     var idArea = req.params.idArea;
     var idRoom = req.params.idRoom;
     if (isNaN(idRoom) || isNaN(idArea)) {
