@@ -69,6 +69,7 @@ router.post('/register', (req, res, next) => {
         phone: req.body.phone,
         username: req.body.username,
         password: hash,
+        role_id:3,
     };
     console.log(entity);
 
@@ -175,11 +176,13 @@ router.post('/logout', auth.notLogin, (req, res, next) => {
 
 //change password
 router.get('/changepass', auth.notLogin, (req, res, next) => {
-    res.render('vwAccount/changepass');
+    res.render('vwAccount/changepass',{
+        layout: false,
+    });
 })
 
 router.post('/updatepass', auth.notLogin, (req, res, next) => {
-    var pass = req.user.MatKhau;
+    var pass = req.user.password;
     var oldpass = req.body.oldpassword;
 
     var ret = bcrypt.compareSync(oldpass, pass);
@@ -193,8 +196,8 @@ router.post('/updatepass', auth.notLogin, (req, res, next) => {
     var saltRounds = 10; //tạo key ảo để nối vào password => hash
     var hash = bcrypt.hashSync(req.body.newpassword, saltRounds);
     var entity = {
-        idKHACHHANG: req.user.idKHACHHANG,
-        MatKhau: hash,
+        id: req.user.id,
+        password: hash,
     };
 
     userModel.update(entity).then(id => {
@@ -278,17 +281,18 @@ router.post('/post', (req, res, next) => {
             });
         }
         var image;
-        console.log(req.file);
         if (req.file)
             image = '/images/home/' + req.file.filename;
 
         req.body.user_id = res.locals.authUser.id;
         req.body.image = image;
-        console.log(req.body);
         roommodel.add(req.body).then(id => {
-            res.render('vwAccount/success');
+            res.redirect('/account/success');
         }).catch(next);
     })
+})
+router.get('/success',(req,res,next)=>{
+    res.render('vwAccount/success');
 })
 
 router.get('/uploadedroom', auth.notLogin,auth.isLessor, (req,res,next)=>{

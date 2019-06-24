@@ -3,10 +3,7 @@ var db = require('../utils/db');
 module.exports = {
 
   add: entity => {
-    return db.add('user', entity).then(newid => {
-      var sql = `INSERT INTO user_role(user_id, role_id) VALUES (${newid},3)`;
-      db.load(sql);
-    })
+    return db.add('user', entity);
   },
   singleByUserName: userName => {
     return db.load(`select * from user where username='${userName}'`);
