@@ -17,8 +17,11 @@ router.get('/:id/rooms', (req, res, next) => {
         roomModel.countByArea(id),
         roomModel.partOfRoomsById(id),
     ]).then(([rows, count_rows, parts]) => {
+        console.log(rows);
+        console.log(count_rows);
+        console.log(parts);
         for (const kv of res.locals.lcAreas) {
-            if (kv.idKhuVuc === +id) {
+            if (kv.id === +id) {
                 kv.isActive = true;
             }
         }
@@ -54,7 +57,7 @@ router.get('/:idArea/rooms/:idRoom', (req, res, next) => {
             var area;
 
             res.locals.lcAreas.forEach(item => {
-                if (item.idKhuVuc === +idArea) {
+                if (item.id === +idArea) {
                     area = item;
                 }
             });
@@ -101,15 +104,14 @@ router.get('/:idArea/rooms/:idRoom/checkout', auth.notLogin, (req, res, next) =>
 
 router.post('/checkout', (req, res, next) => {
     var entity = {
-        TenNguoiGD: req.body.name,
-        Email: req.body.email,
-        DiaChi: req.body.address,
-        SDT: req.body.phone,
-        GhiChu: req.body.note,
-        idKHACHHANG: req.body.khachhang,
-        idPhong: req.body.phong
+        renter_id: req.user.id,
+        lessor_id: req.body.lessor_id,
+        room_id: req.body.room_id,
+        price: req.body.price,
+        note: req.body.note,
     };
 
+    console.log(entity);
     dealModel.add(entity).then(id => {
         res.redirect('/');
     })

@@ -56,14 +56,14 @@
                 {{#each areas as |item|}}
                 <tr class="data item">
                     <td class="data" width="30px" name="idKhuVuc">
-                        <center>{{item.idKhuVuc}}</center>
+                        <center>{{item.id}}</center>
                     </td>
                     <td class="data" name="TenKhuVuc">
-                        <center>{{item.TenKhuVuc}}</center>
+                        <center>{{item.name}}</center>
                     </td>
                     <td class="data" width="120px">
                         <center>
-                            <a href="/admin/areas/edit/{{item.idKhuVuc}}">Edit</a>
+                            <a href="/admin/areas/edit/{{item.id}}">Edit</a>
                         </center>
                     </td>
                 </tr>

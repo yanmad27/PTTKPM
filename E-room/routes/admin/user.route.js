@@ -63,15 +63,15 @@ router.get('/edit/:id', (req, res, next) => {
 
 router.post('/update', (req, res, next) => {
     var entity = {
-        idKHAHHANG: req.body.idKHAHHANG,
-        TenKH: req.body.TenKH,
-        DiaChi: req.body.DiaChi,
-        Email: req.body.Email,
-        SDT: req.body.SDT,
-        Quyen: +req.body.Quyen
+        id: req.body.id,
+        fullname: req.body.fullname,
+        address: req.body.address,
+        email: req.body.email,
+        phone: req.body.phone,
+        role_id: req.body.role_id
     };
 
-    userModel.update(req.body).then(n => {
+    userModel.update(entity).then(n => {
         res.redirect('/admin/users');
     }).catch(next);
 })

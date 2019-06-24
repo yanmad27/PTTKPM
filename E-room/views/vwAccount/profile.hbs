@@ -97,39 +97,42 @@
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
-                                {{#if isAuthenticated}}
-                                <li class="dropdown"><a href="#">Hi, <b>{{authUser.TenDangNhap}}</b><i
-                                            class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="/account/profile/{{authUser.idKHACHHANG}}">
-                                                <i class="fa fa-user"></i>
-                                                Profile
-                                            </a></li>
-                                        <li><a href="/account/history/{{authUser.idKHACHHANG}}">
-                                                <i class="fa fa-shopping-cart"></i>
-                                                History
-                                            </a></li>
-                                        {{#ifEq authUser.Quyen 1}}
-                                        <li><a href="/admin"><i class="fa fa-lock"></i>
-                                                Admin</a></li>
-                                        {{/ifEq}}
-                                        <li><a href="/account/changepass">
-                                                <i class="fa fa-key"></i>
-                                                Change Password
-                                            </a></li>
-                                        <li><a href="javascript: $('#frmSignout').submit();">
-                                                <i class="fa fa-sign-out"></i>
-                                                Sign Out
-                                            </a></li>
-                                    </ul>
-                                </li>
-
-                                {{else}}
-                                <li><a href="/account/register"><i class="fa fa-user-plus"></i>
-                                        Register</a></li>
-                                <li><a href="/account/login"><i class="fa fa-sign-in"></i>
-                                        Sign In</a></li>
-                                {{/if}}
+                           {{#if isAuthenticated}}
+                            <li class="dropdown"><a href="#">Hi, <b>{{authUser.fullname}}</b><i
+                                        class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a href="/account/profile/{{authUser.id}}">
+                                            <i class="fa fa-user"></i>
+                                            Profile
+                                        </a></li>
+                                    <li><a href="/account/history/{{authUser.id}}">
+                                            <i class="fa fa-history"></i>
+                                            History
+                                        </a></li>
+                                    {{#ifEq authUser.role_id 4}}
+                                    <li><a href="/account/post"><i class="fa fa-plus"></i>
+                                            Upload</a></li>
+                                    {{/ifEq}}
+                                    {{#ifEq authUser.role_id 1}}
+                                    <li><a href="/admin"><i class="fa fa-lock"></i>
+                                            Admin</a></li>
+                                    {{/ifEq}}
+                                    <li><a href="/account/changepass">
+                                            <i class="fa fa-key"></i>
+                                            Change Password
+                                        </a></li>
+                                    <li><a href="javascript: $('#frmSignout').submit();">
+                                            <i class="fa fa-sign-out"></i>
+                                            Sign Out
+                                        </a></li>
+                                </ul>
+                            </li>
+                            {{else}}
+                            <li><a href="/account/register"><i class="fa fa-user-plus"></i>
+                                    Register</a></li>
+                            <li><a href="/account/login"><i class="fa fa-sign-in"></i>
+                                    Sign In</a></li>
+                            {{/if}}
                             </ul>
                         </div>
                     </div>
@@ -158,32 +161,32 @@
                         <form novalidate action="/account/update" method="POST" id="editForm">
                             <div class="form-group">
                                 <label for="txtName">ID:</label>
-                                <input type="text" readonly id="txtId" name="id" value="{{this.cus.idKHACHHANG}}" />
+                                <input type="text" readonly id="txtId" name="id" value="{{this.cus.id}}" />
                             </div>
                             <div class="form-group">
                                 <label for="txtName">Username:</label>
                                 <input type="text" readonly id="txtUsername" name="username"
-                                    value="{{this.cus.TenDangNhap}}" />
+                                    value="{{this.cus.username}}" />
                             </div>
                             <div class="form-group">
                                 <label for="txtName">Name:</label>
                                 <input type="text" placeholder="Name" id="txtName" name="name" autofocus
-                                    value="{{this.cus.TenKH}}" />
+                                    value="{{this.cus.fullname}}" />
                             </div>
                             <div class="form-group">
                                 <label for="txtName">Address:</label>
                                 <input type="text" placeholder="Address" id="txtAddress" name="address"
-                                    value="{{this.cus.DiaChi}}" />
+                                    value="{{this.cus.address}}" />
                             </div>
                             <div class="form-group">
                                 <label for="txtName">Phone:</label>
                                 <input type="text" placeholder="Phone" id="txtPhone" name="phone"
-                                    value="{{this.cus.SDT}}" />
+                                    value="{{this.cus.phone}}" />
                             </div>
                             <div class="form-group">
                                 <label for="txtName">Email:</label>
                                 <input type="email" placeholder="Email" id="txtEmail" name="email"
-                                    value="{{this.cus.Email}}" />
+                                    value="{{this.cus.email}}" />
                             </div>
                             {{!-- <input type="password" placeholder="Password" id="txtPassword" name="password" />
                             <input type="password" placeholder="Confirm Password" id="txtConfirm" name="confirm"> --}}

@@ -37,10 +37,10 @@ app.get('/partials/', (req, res) => {
 
 app.use('/areas', require('./routes/area.route'));
 app.use('/account', require('./routes/account/account.route'));
-app.use('/admin', auth.isAdmin, require('./routes/admin/admin.route'));
-app.use('/admin/areas', auth.isAdmin, require('./routes/admin/area.route'));
-app.use('/admin/rooms', auth.isAdmin, require('./routes/admin/room.route'));
-app.use('/admin/users', auth.isAdmin, require('./routes/admin/user.route'));
+app.use('/admin', auth.notLogin, auth.isAdmin, require('./routes/admin/admin.route'));
+app.use('/admin/areas', auth.notLogin, auth.isAdmin, require('./routes/admin/area.route'));
+app.use('/admin/rooms', auth.notLogin, auth.isAdmin, require('./routes/admin/room.route'));
+app.use('/admin/users', auth.notLogin, auth.isAdmin, require('./routes/admin/user.route'));
 
 app.use((req, res, next) => {
     res.render('404', { layout: false });
@@ -56,5 +56,5 @@ app.use((error, req, res, next) => {
 
 var port = process.env.PORT || 8000;
 app.listen(port, () => {
-    console.log('Server is running at http://localhost:' +port+'/');
+    console.log('Server is running at http://localhost:' + port + '/');
 })

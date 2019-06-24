@@ -10,7 +10,7 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/css/prettyPhoto.css" rel="stylesheet">
-    <link href="/css/price-range.css" rel="stylesheet">
+    <link href="/css/price-range.css" rel="stylesheet"> 
     <link href="/css/animate.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/responsive.css" rel="stylesheet">
@@ -98,37 +98,41 @@
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
                                 {{#if isAuthenticated}}
-                                <li class="dropdown"><a href="#">Hi, <b>{{authUser.TenDangNhap}}</b><i
-                                            class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="/account/profile/{{authUser.idKHACHHANG}}">
-                                                <i class="fa fa-user"></i>
-                                                Profile
-                                            </a></li>
-                                        <li><a href="/account/history/{{authUser.idKHACHHANG}}">
-                                                <i class="fa fa-shopping-cart"></i>
-                                                History
-                                            </a></li>
-                                        {{#ifEq authUser.Quyen 1}}
-                                        <li><a href="/admin"><i class="fa fa-lock"></i>
-                                                Admin</a></li>
-                                        {{/ifEq}}
-                                        <li><a href="/account/changepass">
-                                                <i class="fa fa-key"></i>
-                                                Change Password
-                                            </a></li>
-                                        <li><a href="javascript: $('#frmSignout').submit();">
-                                                <i class="fa fa-sign-out"></i>
-                                                Sign Out
-                                            </a></li>
-                                    </ul>
-                                </li>
-                                {{else}}
-                                <li><a href="/account/register"><i class="fa fa-user-plus"></i>
-                                        Register</a></li>
-                                <li><a href="/account/login"><i class="fa fa-sign-in"></i>
-                                        Sign In</a></li>
-                                {{/if}}
+                            <li class="dropdown"><a href="#">Hi, <b>{{authUser.fullname}}</b><i
+                                        class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a href="/account/profile/{{authUser.id}}">
+                                            <i class="fa fa-user"></i>
+                                            Profile
+                                        </a></li>
+                                    <li><a href="/account/history/{{authUser.id}}">
+                                            <i class="fa fa-history"></i>
+                                            History
+                                        </a></li>
+                                    {{#ifEq authUser.role_id 4}}
+                                    <li><a href="/account/post"><i class="fa fa-plus"></i>
+                                            Upload</a></li>
+                                    {{/ifEq}}
+                                    {{#ifEq authUser.role_id 1}}
+                                    <li><a href="/admin"><i class="fa fa-lock"></i>
+                                            Admin</a></li>
+                                    {{/ifEq}}
+                                    <li><a href="/account/changepass">
+                                            <i class="fa fa-key"></i>
+                                            Change Password
+                                        </a></li>
+                                    <li><a href="javascript: $('#frmSignout').submit();">
+                                            <i class="fa fa-sign-out"></i>
+                                            Sign Out
+                                        </a></li>
+                                </ul>
+                            </li>
+                            {{else}}
+                            <li><a href="/account/register"><i class="fa fa-user-plus"></i>
+                                    Register</a></li>
+                            <li><a href="/account/login"><i class="fa fa-sign-in"></i>
+                                    Sign In</a></li>
+                            {{/if}}
                             </ul>
                         </div>
                     </div>
@@ -161,31 +165,31 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr class="cart_menu">
-                            <td class="image">Id</td>
+                            <td class="image">#</td>
                             <td class="image">Item</td>
-                            <td class="description"></td>
-                            <td class="price">Price</td>
-                            <td class="description">Traders</td>
+                            <td class="description">Tên </td>
+                            <td class="price">Giá</td>
+                            <td class="description">Người sở hữu</td>
                         </tr>
                     </thead>
                     <tbody>
-                        {{#each this.rooms as |item|}}
+                        {{#each rooms}}
                         <tr>
                             <td class="cart_price">
-                                <p>{{item.idPhong}}</p>
+                                <p>{{room_id}}</p>
                             </td>
                             <td class="cart_product">
-                                <a href="/areas/{{item.idKhuVuc}}/rooms/{{item.idPhong}}"><img src="{{item.HinhAnh}}"
+                                <a href="/areas/{{district_id}}/rooms/{{room_id}}"><img src="{{image}}"
                                         alt=""></a>
                             </td>
                             <td class="cart_description">
-                                <h4><a href="/areas/{{item.idKhuVuc}}/rooms/{{item.idPhong}}">{{item.TenPhong}}</a></h4>
+                                <h4><a href="/areas/{{district_id}}/rooms/{{room_id}}">{{room_name}}</a></h4>
                             </td>
                             <td class="cart_price">
-                                <p>{{format item.GiaBan}}</p>
+                                <p>{{format price}}</p>
                             </td>
                             <td class="cart_description">
-                                <p>{{item.TenNguoiGD}}</p>
+                                <p>{{lessor_name}}</p>
                             </td>
                         </tr>
                         {{/each}}

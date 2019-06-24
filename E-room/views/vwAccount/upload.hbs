@@ -1,0 +1,67 @@
+{{#section 'css'}}
+{{/section}}
+
+{{#section 'js'}}
+{{/section}}
+
+{{#section 'customCate'}}
+<h2>Chức năng</h2>
+<div class="list-group list-group-flush">
+     <a href="/account/post" class="list-group-item list-group-item-action active">Đăng phòng</a>
+    <a href="/account/uploadedroom" class="list-group-item list-group-item-action ">Danh sách phòng đã dăng</a>
+    <a href="/account/rentedroom" class="list-group-item list-group-item-action ">Danh sách phòng được liên
+        hệ</a>
+</div>
+
+{{/section}}
+
+<div class="recommended_items">
+    <!--recommended_items-->
+    <div style="clear: both; margin-top: 10px;"></div>
+    <h2 class="title text-center">Đăng phòng</h2>
+    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+        <div class="card" style="margin:6px">
+            <div class="card-body">
+                <form action="/account/post" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="">Tên phòng</label>
+                        <input type="text" class="form-control" name="name" id="" required="required"
+                            placeholder="Chung cư 2 người">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Mô tả</label>
+                        <input type="text" class="form-control" name="description" required="required" id=""
+                            placeholder="Tiện lợi, gần trường, ....">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Quận</label>
+                        <select class=" form-control" name="district_id" id="" >
+                            {{#each lcAreas}}
+                            <option value="{{id}}">{{formatDistrict name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Địa chỉ</label>
+                        <input type="text" class="form-control" name="address" required="required" id=""
+                            placeholder="14/Lý Thái Tổ Phường 4">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Hình ảnh</label>
+                        <input type="file" class="form-control-file" required="required" id="" name="image">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Giá</label>
+                        <input type="text" class="form-control" name="price" required="required" id=""
+                            placeholder="50000000">
+                    </div>
+                    <input type="hidden" id="" name="isrented" value="0">
+                    <button type="submit" class="btn btn-primary " style="float: right;"><i
+                            class="fa fa-cloud-upload"></i>
+                        Đăng</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

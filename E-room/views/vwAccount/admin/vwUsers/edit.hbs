@@ -49,30 +49,32 @@
                 <table>
                     <tr>
                         <td style="float: right"><b>ID:</b></td>
-                        <td><input size="29" readonly name="idKHACHHANG" value="{{user.idKHACHHANG}}"></td>
+                        <td><input size="29" readonly name="id" value="{{user.id}}"></td>
                     </tr>
                     <tr>
                         <td style="float: right"><b>Họ tên:</b></td>
-                        <td><input size="80"  type="text" value="{{user.TenKH}}" class="sedang" name="TenKH"></td>
+                        <td><input size="80"  type="text" value="{{user.fullname}}" class="sedang" name="name"></td>
                     </tr>
                     <tr>
                         <td style="float: right"><b>Địa chỉ:</b></td>
-                        <td><input size="80" type="text" value="{{user.DiaChi}}" class="sedang" name="DiaChi"></td>
+                        <td><input size="80" type="text" value="{{user.address}}" class="sedang" name="address"></td>
                     </tr>
                     <tr>
                         <td style="float: right"><b>Email:</b></td>
-                        <td><input size="80" type="text" value="{{user.Email}}" class="sedang" name="Email"></td>
+                        <td><input size="80" type="text" value="{{user.email}}" class="sedang" name="email"></td>
                     </tr>
                     <tr>
                         <td style="float: right"><b>SĐT:</b></td>
-                        <td><input size="80" type="text" value="{{user.SDT}}" class="sedang" name="SDT"></td>
+                        <td><input size="80" type="text" value="{{user.phone}}" class="sedang" name="phone"></td>
                     </tr>
                     <tr>
                         <td style="float: right"><b>Quyền:</b></td>
                         <td>
-                            {{#ifEq user}}
-                            {{this}}
-                            {{/ifEq}}
+                            <select name="role_id" id="">
+                                <option value="1" >admin</option>
+                                <option value="3" >renter</option>
+                                <option value="4" >lessor</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>

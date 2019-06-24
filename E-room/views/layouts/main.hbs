@@ -7,6 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Home</title>
+
+    
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/css/prettyPhoto.css" rel="stylesheet">
@@ -29,22 +31,27 @@
     <section>
         <div class="container">
             <div class="row">
+
+
+
+
                 {{!-- category --}}
                 <div class="col-sm-3">
                     <div class="left-sidebar">
-                        <h2>Khu Vực</h2>
+                        {{{_sections.customCate}}}
+                        <h2>Quận</h2>
                         <div class="list-group list-group-flush">
                             {{#each lcAreas}}
-                            <a href="/areas/{{idKhuVuc}}/rooms"
+                            <a href="/areas/{{id}}/rooms"
                                 class="list-group-item list-group-item-action {{#if isActive}}active{{/if}}">
-                                {{TenKhuVuc}}
+                                {{formatDistrict name}}
                                 {{#if num_of_rooms}}
                                 <span class="badge badge-danger float-right">{{num_of_rooms}}</span>
                                 {{/if}}
                             </a>
                             {{/each}}
                         </div>
-                     
+
 
                         <div class="shipping text-center">
                             <!--shipping-->
@@ -73,10 +80,11 @@
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
                                                 <div class="productinfo text-center">
-                                                    <img class="fiximg" src="{{HinhAnh}}" alt="" />
-                                                    <h2>{{format GiaBan}}</h2>
-                                                    <p>{{TenPhong}}</p>
-                                                    <a href="/areas/{{idKhuVuc}}/rooms/{{idPhong}}/checkout" class="btn btn-default add-to-cart"><i
+                                                    <img class="fiximg" src="{{image}}" alt="" />
+                                                    <h2>{{format price}}</h2>
+                                                    <p>{{name}}</p>
+                                                    <a href="/areas/{{district_id}}/rooms/{{id}}/checkout"
+                                                        class="btn btn-default add-to-cart"><i
                                                             class="fa fa-shopping-cart"></i>Thực hiện giao dịch</a>
                                                 </div>
                                             </div>
@@ -90,10 +98,11 @@
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
                                                 <div class="productinfo text-center">
-                                                    <img class="fiximg" src="{{HinhAnh}}" alt="" />
-                                                    <h2>{{format GiaBan}}</h2>
-                                                    <p>{{TenPhong}}</p>
-                                                    <a href="/areas/{{idKhuVuc}}/rooms/{{idPhong}}/checkout" class="btn btn-default add-to-cart"><i
+                                                    <img class="fiximg" src="{{image}}" alt="" />
+                                                    <h2>{{format price}}</h2>
+                                                    <p>{{name}}</p>
+                                                    <a href="/areas/{{district_id}}/rooms/{{id}}/checkout"
+                                                        class="btn btn-default add-to-cart"><i
                                                             class="fa fa-shopping-cart"></i>Thực hiện giao dịch</a>
                                                 </div>
                                             </div>

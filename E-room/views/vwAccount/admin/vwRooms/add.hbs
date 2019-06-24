@@ -44,30 +44,30 @@
                 <table>
                     <tr>
                         <td style="float: right"><b>Tên căn hộ:</b></td>
-                        <td><input size="80" type="text" class="sedang" id="txtKhuVuc" name="TenPhong"></td>
+                        <td><input size="80" type="text" class="sedang" id="txtKhuVuc" name="name"></td>
                     </tr>
                     <tr>
                         <td style="float: right"><b>Địa chỉ:</b></td>
-                        <td><input size="80" type="text" class="sedang" name="DiaChi"></td>
+                        <td><input size="80" type="text" class="sedang" name="address"></td>
                     </tr>
                     <tr>
                         <td style="float: right"><b>Hình ảnh:</b></td>
-                        <td><input size="80" type="file" value="{{room.HinhAnh}}" class="sedang" name="HinhAnh"></td>
+                        <td><input size="80" type="file" value="{{room.image}}" class="sedang" name="image"></td>
                     </tr>
                     <tr>
                         <td style="float: right"><b>Chi tiết:</b></td>
-                        <td><input type="text" size="80" class="sedang" name="MoTa"></td>
+                        <td><input type="text" size="80" class="sedang" name="description"></td>
                     </tr>
                     <tr>
                         <td style="float: right"><b>Giá thành:</b></td>
-                        <td><input size="80" type="text" class="sedang" name="GiaBan"></td>
+                        <td><input size="80" type="text" class="sedang" name="price"></td>
                     </tr>
                     <tr>
                         <td style="float: right"><b>Khu vực:</b></td>
                         <td>
                             <select name="idKhuVuc" class="sedang" class="form-control">
                                 {{#each this.lcAreas}}
-                                <option value="{{idKhuVuc}}">{{TenKhuVuc}}</option>
+                                <option value="{{id}}">{{name}}</option>
                                 {{/each}}
                             </select>
                         </td>

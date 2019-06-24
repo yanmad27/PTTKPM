@@ -4,7 +4,9 @@ var userModel = require('../../models/user.model');
 var dealModel = require('../../models/deal.model');
 var passport = require('passport');
 var auth = require('../../middlewares/auth');
-
+var Cryptr = require('cryptr');
+var cryptr = new Cryptr('titom');
+var upload = require('../../middlewares/upload');
 var router = express.Router();
 
 router.get('/is-available', (req, res, next) => {
@@ -61,14 +63,14 @@ router.post('/register', (req, res, next) => {
     var hash = bcrypt.hashSync(req.body.password, saltRounds);
 
     var entity = {
-        TenKH: req.body.name,
-        Email: req.body.email,
-        DiaChi: req.body.address,
-        SDT: req.body.phone,
-        TenDangNhap: req.body.username,
-        MatKhau: hash,
-        Quyen: 0
+        fullname: req.body.name,
+        email: req.body.email,
+        address: req.body.address,
+        phone: req.body.phone,
+        username: req.body.username,
+        password: hash,
     };
+    console.log(entity);
 
     userModel.add(entity).then(id => {
         res.redirect('/account/login');
@@ -127,12 +129,13 @@ router.get('/profile/:id', auth.notLogin, (req, res, next) => {
 
 router.post('/update', auth.notLogin, (req, res, next) => {
     var entity = {
-        idKHACHHANG: req.body.id,
-        TenKH: req.body.name,
-        Email: req.body.email,
-        SDT: req.body.phone,
-        DiaChi: req.body.address
+        id: req.body.id,
+        fullname: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        address: req.body.address
     };
+    console.log(entity);
 
     userModel.update(entity).then(id => {
         res.redirect('/');
@@ -148,23 +151,13 @@ router.get('/history/:id', auth.notLogin, (req, res, next) => {
         });
     }
 
-    dealModel.singleByIdKH(id).then(rows => {
-        var rooms = [];
-        rows.forEach(item => {
-            for (let index = 0; index < res.locals.lcRooms.length; index++) {
-                if (item.idPhong === res.locals.lcRooms[index].idPhong) {
-                    res.locals.lcRooms[index].TenNguoiGD = item.TenNguoiGD;
-                    rooms.push(res.locals.lcRooms[index]);
-                    break;
-                }
-            }
-        });
+    dealModel.singleByIdRenter(id).then(rows => {
 
         if (rows.length > 0) {
             res.render('vwAccount/history', {
                 error: false,
                 layout: false,
-                rooms: rooms
+                rooms: rows
             });
         } else {
             res.render('vwAccount/history', {
@@ -239,7 +232,7 @@ router.post('/sendmail', auth.inLogin, (req, res, next) => {
         subject: 'Confirm password',
         html: '<h1>Welcome</h1><p>E-room!</p>'
             + '<p>Your default password is <b>123456</b><p>'
-            + '<p>Please access this site to confirm password: <a href=http://localhost:4000/account/confirm/' + hash + '>'
+            + '<p>Please access this site to confirm password: <a href=http://localhost:8000/account/confirm/' + hash + '>'
             + 'eroom.tk</a>'
             + '<p>Have a nice day!</p>'
     };
@@ -262,13 +255,52 @@ router.get('/confirm/:username', auth.inLogin, (req, res, next) => {
     var username = cryptr.decrypt(req.params.username);
 
     var entity = {
-        TenDangNhap: username,
-        MatKhau: hash,
+        username: username,
+        password: hash,
     };
 
     userModel.updateByUsername(entity).then(id => {
         res.redirect('/account/login');
     }).catch(next);
+})
+
+//upload room
+router.get('/post', auth.notLogin,auth.isLessor, (req, res, next) => {
+    res.render('vwAccount/upload');
+})
+
+router.post('/post', (req, res, next) => {
+    var roommodel = require('../../models/room.model');
+    upload.single('image')(req, res, err => {
+        if (err) {
+            return res.json({
+                error: err.message
+            });
+        }
+        var image;
+        console.log(req.file);
+        if (req.file)
+            image = '/images/home/' + req.file.filename;
+
+        req.body.user_id = res.locals.authUser.id;
+        req.body.image = image;
+        console.log(req.body);
+        roommodel.add(req.body).then(id => {
+            res.render('vwAccount/success');
+        }).catch(next);
+    })
+})
+
+router.get('/uploadedroom', auth.notLogin,auth.isLessor, (req,res,next)=>{
+    var roommodel= require('../../models/room.model');
+    roommodel.allByUserId(req.user.id).then(rows=>{
+        res.render('vwAccount/uploaded', {
+            dataroom:rows,
+        });
+
+    })
+
+
 })
 
 module.exports = router;

@@ -9,7 +9,7 @@
     <!--product-details-->
     <div class="col-sm-5">
         <div class="view-product">
-            <img src="{{this.room.HinhAnh}}" alt="" />
+            <img src="{{this.room.image}}" alt="" />
             <h3>ZOOM</h3>
         </div>
     </div>
@@ -17,15 +17,15 @@
         <div class="product-information">
             <!--/product-information-->
             <img src="/images/product-details/new.jpg" class="newarrival" alt="" />
-            <h2>{{this.room.TenPhong}}</h2>
+            <h2>{{this.room.name}}</h2>
             <p>
                 Mã phòng:
-                {{this.room.idPhong}}</p>
+                {{this.room.id}}</p>
             <img src="/images/product-details/rating.png" alt="" />
             <span>
-                <span>{{format this.room.GiaBan}}</span>
+                <span>{{format this.room.price}}</span>
                 <p>
-                    <a href="/areas/{{area.idKhuVuc}}/rooms/{{this.room.idPhong}}/checkout"><button type="button"
+                    <a href="/areas/{{area.district_id}}/rooms/{{this.room.id}}/checkout"><button type="button"
                             class="btn btn-fefault cart">
                             <i class="fa fa-shopping-cart"></i> Thực hiện giao dịch
                         </button>
@@ -34,15 +34,15 @@
             </span>
             <p>
                 <b>Khu vực:</b>
-                {{this.area.TenKhuVuc}}
+                {{formatDistrict this.area.name}}
             </p>
             <p>
                 <b>Địa chỉ:</b>
-                {{this.room.DiaChi}}
+                {{this.room.address}}
             </p>
             <p>
                 <b>Mô tả:</b>
-                {{this.room.MoTa}}
+                {{this.room.description}}
             </p>
             <a href=""><img src="/images/product-details/share.png" class="share img-responsive" alt="" /></a>
         </div>

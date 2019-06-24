@@ -10,7 +10,12 @@ module.exports = {
         } else next();
     },
     isAdmin: (req, res, next) => {
-        if (!(req.user.role === 4)) {
+        if (!(req.user.role_id === 1)) {
+            res.redirect('/pagenotfound');
+        } else next();
+    },
+    isLessor: (req, res, next) => {
+        if (!(req.user.role_id === 4)) {
             res.redirect('/pagenotfound');
         } else next();
     },

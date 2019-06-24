@@ -100,38 +100,41 @@
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
                                 {{#if isAuthenticated}}
-                                <li class="dropdown"><a href="#">Hi, <b>{{authUser.TenDangNhap}}</b><i
-                                            class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="/account/profile/{{authUser.idKHACHHANG}}">
-                                                <i class="fa fa-user"></i>
-                                                Profile
-                                            </a></li>
-                                        <li><a href="/account/history/{{authUser.idKHACHHANG}}">
-                                                <i class="fa fa-shopping-cart"></i>
-                                                History
-                                            </a></li>
-                                        {{#ifEq authUser.Quyen 1}}
-                                        <li><a href="/admin"><i class="fa fa-lock"></i>
-                                                Admin</a></li>
-                                        {{/ifEq}}
-                                        <li><a href="/account/changepass">
-                                                <i class="fa fa-key"></i>
-                                                Change Password
-                                            </a></li>
-                                        <li><a href="javascript: $('#frmSignout').submit();">
-                                                <i class="fa fa-sign-out"></i>
-                                                Sign Out
-                                            </a></li>
-                                    </ul>
-                                </li>
-
-                                {{else}}
-                                <li><a href="/account/register"><i class="fa fa-user-plus"></i>
-                                        Register</a></li>
-                                <li><a href="/account/login"><i class="fa fa-sign-in"></i>
-                                        Sign In</a></li>
-                                {{/if}}
+                            <li class="dropdown"><a href="#">Hi, <b>{{authUser.fullname}}</b><i
+                                        class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a href="/account/profile/{{authUser.id}}">
+                                            <i class="fa fa-user"></i>
+                                            Profile
+                                        </a></li>
+                                    <li><a href="/account/history/{{authUser.id}}">
+                                            <i class="fa fa-history"></i>
+                                            History
+                                        </a></li>
+                                    {{#ifEq authUser.role_id 4}}
+                                    <li><a href="/account/post"><i class="fa fa-plus"></i>
+                                            Upload</a></li>
+                                    {{/ifEq}}
+                                    {{#ifEq authUser.role_id 1}}
+                                    <li><a href="/admin"><i class="fa fa-lock"></i>
+                                            Admin</a></li>
+                                    {{/ifEq}}
+                                    <li><a href="/account/changepass">
+                                            <i class="fa fa-key"></i>
+                                            Change Password
+                                        </a></li>
+                                    <li><a href="javascript: $('#frmSignout').submit();">
+                                            <i class="fa fa-sign-out"></i>
+                                            Sign Out
+                                        </a></li>
+                                </ul>
+                            </li>
+                            {{else}}
+                            <li><a href="/account/register"><i class="fa fa-user-plus"></i>
+                                    Register</a></li>
+                            <li><a href="/account/login"><i class="fa fa-sign-in"></i>
+                                    Sign In</a></li>
+                            {{/if}}
                             </ul>
                         </div>
                     </div>

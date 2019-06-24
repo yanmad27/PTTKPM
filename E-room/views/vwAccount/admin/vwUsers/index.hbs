@@ -67,26 +67,26 @@
                 {{#each users as |item|}}
                 <tr class="data item">
                     <td class="data" width="30px" name="idKHACHHANG">
-                        <center>{{item.idKHACHHANG}}</center>
+                        <center>{{item.id}}</center>
                     </td>
                     <td class="data" name="TenKH">
-                        <center>{{item.TenKH}}</center>
+                        <center>{{item.fullname}}</center>
                     </td>
                     <td class="data" name="DiaChi">
-                        <center>{{item.DiaChi}}</center>
+                        <center>{{item.address}}</center>
                     </td>
                     <td class="data" name="Email">
-                        <center>{{item.Email}}</center>
+                        <center>{{item.email}}</center>
                     </td>
                     <td class="data" name="SDT">
-                        <center>{{item.SDT}}</center>
+                        <center>{{item.phone}}</center>
                     </td>
                     <td class="data" name="Role">
-                        <center>{{item.Role}}</center>
+                        <center>{{item.role_id}}</center>
                     </td>
                     <td class="data" width="30px">
                         <center>
-                            <a href="/admin/users/edit/{{item.idKHACHHANG}}">Edit</a>
+                            <a href="/admin/users/edit/{{item.id}}">Edit</a>
                         </center>
                     </td>
                 </tr>

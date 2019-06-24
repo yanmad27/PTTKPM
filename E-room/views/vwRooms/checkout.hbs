@@ -98,14 +98,14 @@
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
                                 {{#if isAuthenticated}}
-                                <li class="dropdown"><a href="#">Hi, <b>{{authUser.TenDangNhap}}</b><i
+                                <li class="dropdown"><a href="#">Hi, <b>{{authUser.username}}</b><i
                                             class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="/account/profile/{{authUser.idKHACHHANG}}">
+                                        <li><a href="/account/profile/{{authUser.id}}">
                                                 <i class="fa fa-user"></i>
                                                 Profile
                                             </a></li>
-                                        <li><a href="/account/history/{{authUser.idKHACHHANG}}">
+                                        <li><a href="/account/history/{{authUser.id}}">
                                                 <i class="fa fa-shopping-cart"></i>
                                                 History
                                             </a></li>
@@ -161,25 +161,28 @@
                             <div class="form-one">
                                 <p>Transaction Information</p>
                                 <form id="dealForm" action="/areas/checkout" method="POST">
-                                    <input type="text" placeholder="Name" id="txtName" name="name" autofocus />
+                                    {{!-- <input type="text" placeholder="Name" id="txtName" name="name" autofocus />
                                     <input type="email" placeholder="Email" id="txtEmail" name="email" />
                                     <input type="text" placeholder="Phone" id="txtPhone" name="phone" />
                                     <input type="text" placeholder="Address" id="txtAddress" name="address" />
                                     <div class="form-group">
                                         <label for="txtCus">Broker:</label>
                                         <select id="txtCus" name="khachhang">
-                                            <option value="{{authUser.idKHACHHANG}}">
-                                                {{authUser.TenKH}}
+                                            <option value="{{authUser.id}}">
+                                                {{authUser.username}}
                                             </option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="txtRoom">Room:</label>
                                         <select name="phong" id="txtRoom">
-                                            <option value="{{this.room.idPhong}}">{{this.room.TenPhong}}
+                                            <option value="{{this.room.id}}">{{this.room.name}}
                                             </option>
                                         </select>
-                                    </div>
+                                    </div> --}}
+                                    <input type="text" hidden value="{{this.room.id}}" name="room_id">
+                                    <input type="text" hidden value="{{this.room.user_id}}" name="lessor_id">
+                                    <input type="text" hidden value="{{this.room.price}}" name="price">
                                     <div class="order-message">
                                         <p>Note</p>
                                         <textarea name="note" id="txtNote"
@@ -201,25 +204,25 @@
                     <thead>
                         <tr class="cart_menu">
                             <td class="image">Id</td>
-                            <td class="image">Item</td>
-                            <td class="description"></td>
-                            <td class="price">Price</td>
+                            <td class="image">Phòng</td>
+                            <td class="description">Mô tả</td>
+                            <td class="price">Giá</td>
                             <td></td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="cart_price">
-                                <p>{{this.room.idPhong}}</p>
+                                <p>{{this.room.id}}</p>
                             </td>
                             <td class="cart_product">
-                                <a href="/areas/{{this.area}}/rooms/{{this.room.idPhong}}"><img src="{{this.room.HinhAnh}}" alt=""></a>
+                                <a href="/areas/{{this.area}}/rooms/{{this.room.id}}"><img src="{{this.room.image}}" alt=""></a>
                             </td>
                             <td class="cart_description">
-                                <h4><a href="/areas/{{this.area}}/rooms/{{this.room.idPhong}}">{{this.room.TenPhong}}</a></h4>
+                                <h4><a href="/areas/{{this.area}}/rooms/{{this.room.id}}">{{this.room.description}}</a></h4>
                             </td>
                             <td class="cart_price">
-                                <p>{{format this.room.GiaBan}}</p>
+                                <p>{{format this.room.price}}</p>
                             </td>
                             <td class="cart_delete">
                                 <a class="cart_quantity_delete"
