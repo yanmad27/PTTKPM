@@ -13,7 +13,7 @@
     "cryptr": "^4.0.2",
     "ember-truth-helpers": "^2.1.0",
     "express": "^4.16.4",
-    "express-handlebars": "^3.0.2",
+    "express-handlebars": "^5.3.1",
     "express-handlebars-sections": "^1.0.1",
     "express-session": "^1.16.1",
     "handlebars-helpers": "^0.10.0",
